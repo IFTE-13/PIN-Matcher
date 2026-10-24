@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIN Matcher</title>
+    <meta name="description" content="Minimalist PIN generator and keypad verification.">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="header-container">
+            <span class="brand-title">PIN Matcher</span>
+            <div class="header-actions">
+                <!-- Sound Toggle -->
+                <button id="soundToggleBtn" class="header-btn" type="button" title="Toggle Sound">
+                    <svg id="soundOnIcon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                    </svg>
+                    <svg id="soundOffIcon" style="display: none;" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <line x1="23" y1="9" x2="17" y2="15"></line>
+                        <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
+                </button>
+
+                <!-- GitHub Button -->
+                <a href="https://github.com/IFTE-13/PIN-Matcher" target="_blank" rel="noopener noreferrer"
+                    class="header-btn header-btn-link" title="View on GitHub">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z">
+                        </path>
+                    </svg>
+                    <span>GitHub</span>
+                </a>
+
+                <!-- Reset Button -->
+                <button id="themeResetBtn" class="header-btn" type="button" title="Reset everything">Reset</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div id="wholeArea" class="panels-grid">
+
+            <!-- Left: PIN Generator -->
+            <section class="card">
+                <div class="card-header-flex">
+                    <div>
+                        <h2 class="card-title">Generated PIN</h2>
+                        <p class="card-desc">Choose length and generate a random PIN.</p>
+                    </div>
+
+                    <!-- 4 / 6 Digit Segment Control -->
+                    <div class="digit-selector" role="radiogroup" aria-label="PIN length">
+                        <button type="button" class="digit-tab active" data-length="4">4 Digits</button>
+                        <button type="button" class="digit-tab" data-length="6">6 Digits</button>
+                    </div>
+                </div>
+
+                <div class="display-box">
+                    <input id="inputNum" class="pin-input" type="text" placeholder="----" readonly>
+                </div>
+
+                <button id="generateNumber" class="btn btn-secondary" type="button">
+                    Generate PIN
+                </button>
+            </section>
+
+            <!-- Right: Keypad Terminal -->
+            <section class="card">
+                <h2 class="card-title">Enter PIN</h2>
+                <p class="card-desc">Type via keypad or physical keyboard to match.</p>
+
+                <div class="display-box">
+                    <input id="calcInputs" class="pin-input" type="text" placeholder="----" readonly>
+                </div>
+
+                <div class="keypad">
+                    <button type="button" class="key" onclick="handlePinNum(7)">7</button>
+                    <button type="button" class="key" onclick="handlePinNum(8)">8</button>
+                    <button type="button" class="key" onclick="handlePinNum(9)">9</button>
+
+                    <button type="button" class="key" onclick="handlePinNum(4)">4</button>
+                    <button type="button" class="key" onclick="handlePinNum(5)">5</button>
+                    <button type="button" class="key" onclick="handlePinNum(6)">6</button>
+
+                    <button type="button" class="key" onclick="handlePinNum(1)">1</button>
+                    <button type="button" class="key" onclick="handlePinNum(2)">2</button>
+                    <button type="button" class="key" onclick="handlePinNum(3)">3</button>
+
+                    <button type="button" class="key key-action" id="backspaceBtn" title="Backspace">⌫</button>
+                    <button type="button" class="key" onclick="handlePinNum(0)">0</button>
+                    <button type="button" class="key key-action" id="clearBtn" title="Clear">C</button>
+                </div>
+
+                <button id="submitBtn" class="btn btn-primary" type="button">
+                    Submit
+                </button>
+
+                <p class="attempts-info">
+                    <span id="opportunityLeft">3</span> attempts left
+                </p>
+            </section>
+
+        </div>
+
+        <!-- Inline Status Notifications (Shown only on error; matching shows modal directly) -->
+        <div class="status-wrapper">
+            <div id="errorArea" class="status-msg status-error" role="alert">
+                <span id="errorMessageText">PIN didn't match. Please try again.</span>
+            </div>
+            <!-- Kept for backward compatibility if queried by tests -->
+            <div id="matchingArea" class="status-msg status-success" role="status" style="display: none;">
+                <span>PIN matched successfully!</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Simple, Minimalist Modal (Shown immediately on correct PIN) -->
+    <div id="successModal" class="modal-backdrop">
+        <div class="modal-card">
+            <h3 class="modal-title">Access Granted</h3>
+            <p class="modal-text">The PIN matched correctly.</p>
+            <button id="resetVaultBtn" class="btn btn-primary" type="button">Close</button>
+        </div>
+    </div>
+
+    <!-- Minimal Lockout Modal -->
+    <div id="lockoutModal" class="modal-backdrop">
+        <div class="modal-card">
+            <h3 class="modal-title">Locked Out</h3>
+            <p class="modal-text">Too many failed attempts.</p>
+            <p id="lockoutTimerDisplay" class="lockout-timer">00:15</p>
+            <button id="emergencyResetBtn" class="btn btn-secondary" type="button">Reset</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
