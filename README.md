@@ -1,4 +1,4 @@
-# VaultGuard - Secure PIN Generator & Verification Terminal
+# PIN Generator
 
 A client-side security token generator and interactive verification keypad terminal built with vanilla **HTML5**, **CSS3**, and **JavaScript**.
 
@@ -21,7 +21,6 @@ A client-side security token generator and interactive verification keypad termi
 - **Security States**:
   - Live 3-attempt tracker with warning and lockout indicators.
   - Shake animation on mismatch.
-  - Access Granted celebration modal with canvas particle explosion.
   - Security Lockout screen with cooldown timer and emergency override.
 - **Native Audio Synthesizer**: Web Audio API sound effects for keystrokes, success, and error alerts (toggleable).
 - **Zero External Dependencies**: Fast, lightweight, and works completely offline.

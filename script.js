@@ -1,8 +1,3 @@
-// =====================================================================
-// Minimalist PIN Matcher Application Logic
-// Features: 4/6-Digit Support, Audio Feedback, GitHub link, Direct Modal on Success
-// =====================================================================
-
 (function () {
     let pinLength = 4;
     const MAX_OPPORTUNITIES = 3;
@@ -139,11 +134,11 @@
             digitTabs.forEach(t => t.classList.remove("active"));
             tab.classList.add("active");
             pinLength = parseInt(tab.dataset.length, 10);
-            
+
             const placeholder = "-".repeat(pinLength);
             inputNum.placeholder = placeholder;
             calcInputs.placeholder = placeholder;
-            
+
             resetInputsOnly();
             sound.playClick();
         });
@@ -153,14 +148,14 @@
     function generatePin() {
         sound.playGenerate();
         hideError();
-        
+
         let pin = "";
         if (pinLength === 4) {
             pin = Math.floor(1000 + Math.random() * 9000).toString();
         } else {
             pin = Math.floor(100000 + Math.random() * 900000).toString();
         }
-        
+
         generatedPin = pin;
         inputNum.value = pin;
     }
@@ -260,7 +255,7 @@
     function handleFailedAttempt() {
         currentOpportunity = Math.max(0, currentOpportunity - 1);
         opportunityLeft.innerText = currentOpportunity;
-        
+
         calcInputs.classList.remove("shake");
         void calcInputs.offsetWidth; // reflow
         calcInputs.classList.add("shake");
