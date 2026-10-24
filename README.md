@@ -6,17 +6,15 @@ A client-side security token generator and interactive verification keypad termi
 
 ```text
 ├── index.html        # Main HTML5 entry point & UI markup
-├── style.css         # Modern responsive CSS design system (Glassmorphism & animations)
-├── script.js         # Application logic, audio synthesizer & state machine
-├── images/           # Asset images directory
-├── pin.html          # Legacy alias redirecting to index.html
+├── style.css         # Minimalist responsive CSS design system
+├── script.js         # Application logic & native audio synthesizer
 └── README.md         # Documentation
 ```
 
 ## 🚀 Features
 
 - **Random Token Generator**: 4-digit and 6-digit rolling OTP generation.
-- **Interactive Terminal Keypad**: Tactile numeric pad with sub-letters, backspace, and clear.
+- **Interactive Terminal Keypad**: Tactile numeric pad with backspace and clear.
 - **Physical Keyboard Support**: Use digits `0-9`, `Backspace`, `Escape`, and `Enter`.
 - **Security States**:
   - Live 3-attempt tracker with warning and lockout indicators.
